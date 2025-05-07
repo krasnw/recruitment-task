@@ -92,3 +92,7 @@ Projekt jest podzielony na trzy główne komponenty:
 - Dodanie walidacji unikalności email i numeru telefonu
 - Adaptacja aplikacji do urządzeń mobilnych
 - Dodanie i18n
+
+## ⚖️ Licencja
+
+Ten projekt jest udostępniony wyłącznie w celach rekrutacyjnych. Jakiekolwiek użycie, modyfikacja lub dystrybucja poza oceną rekrutacyjną wymaga wyraźnej pisemnej zgody autora. Szczegóły znajdują się w pliku [LICENSE](LICENSE).
