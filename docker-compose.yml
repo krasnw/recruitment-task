@@ -1,0 +1,68 @@
+services:
+  database:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    container_name: database
+    environment:
+      POSTGRES_USER: soulab_user
+      POSTGRES_PASSWORD: soulab_password
+      POSTGRES_DB: soulab_task
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+    networks:
+      - api-network
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -d soulab_task -U soulab_user"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    volumes:
+      - ./backend:/var/www/html
+    environment:
+      - APP_ENV=dev
+      - DATABASE_URL=postgresql://soulab_user:soulab_password@database:5432/soulab_task?serverVersion=15&charset=utf8
+    ports:
+      - "8000:8000"
+    networks:
+      - api-network
+    depends_on:
+      database:
+        condition: service_healthy
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    networks:
+      - api-network
+    depends_on:
+      - backend
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 10s
+
+
+networks:
+  api-network:
+    driver: bridge
+
+volumes:
+  postgres_data:

@@ -1,0 +1,31 @@
+### Get all users list
+GET http://localhost:8000/api/users
+Accept: application/json
+
+### Get specific user details by ID
+GET http://localhost:8000/api/users/1
+Accept: application/json
+
+### Submit form data
+POST http://localhost:8000/api/form
+Content-Type: application/json
+
+{
+  "basic": {
+    "firstName": "Jan",
+    "lastName": "Kowalski",
+    "birthDate": "1993-02-02"
+  },
+  "contact": {
+    "phoneNumber": "999888777",
+    "email": "jankowalski@wp.pl"
+  },
+  "workExperience": [
+    {
+      "company": "Google",
+      "position": "Frontend Developer",
+      "dateFrom": "2019-04-08",
+      "dateTo": "2024-10-03"
+    }
+  ]
+}
