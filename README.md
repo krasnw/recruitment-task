@@ -83,6 +83,7 @@ Projekt jest podzielony na trzy główne komponenty:
 - Użycie DTO (Data Transfer Object) do przesyłania danych między frontendem a backendem
 - Przegląd danych po zatwierdzeniu formularza
 - Dostęp do listy wszystkich zapisanych danych przez dedykowany endpoint API
+- Pliki .env są dołączone do repozytorium wyłącznie w celach demonstracyjnych dla łatwego uruchomienia projektu. W środowisku produkcyjnym pliki .env powinny być wyłączone z systemu kontroli wersji i skonfigurowane indywidualnie dla każdego środowiska
 
 ## 📈 Propozycje rozwoju
 
